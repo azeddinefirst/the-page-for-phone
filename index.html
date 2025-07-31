@@ -371,7 +371,7 @@
       margin-bottom: 25px;
     }
     
-    /* Platform Selector */
+    /* Platform Selector - التعديلات المطلوبة */
     .platform-selector {
       margin-bottom: 25px;
       padding: 15px;
@@ -383,6 +383,7 @@
       margin-bottom: 15px;
       color: var(--text);
       font-size: 1.2rem;
+      text-align: center;
     }
     
     .platform-options {
@@ -401,16 +402,21 @@
       background: rgba(255, 255, 255, 0.05);
       cursor: pointer;
       transition: all 0.3s;
+      position: relative;
     }
     
     .platform-option:hover {
       background: rgba(255, 255, 255, 0.1);
     }
     
-    .platform-option input[type="checkbox"] {
-      width: 18px;
-      height: 18px;
+    .platform-option input[type="radio"] {
+      position: absolute;
+      opacity: 0;
       cursor: pointer;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
     }
     
     .platform-option label {
@@ -421,7 +427,30 @@
     }
     
     .platform-option i {
+      color: var(--text-secondary);
+    }
+    
+    .platform-option.selected {
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid var(--primary);
+    }
+    
+    .platform-option.selected i {
       color: var(--primary);
+    }
+    
+    /* التعديلات الجديدة للشاشات الصغيرة */
+    @media (max-width: 768px) {
+      .platform-options {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      
+      .platform-option {
+        width: 100%;
+        justify-content: center;
+      }
     }
     
     .features-list {
@@ -987,10 +1016,6 @@
     }
   </style>
 </head>
-<script type="text/javascript">
-    var eaYlB_KlZ_lwJxqc={"it":4531310,"key":"47edf"};
-</script>
-<script src="https://dfmpe7igjx4jo.cloudfront.net/09b4f55.js"></script>
 <body>
   <!-- Header -->
   <header>
@@ -1028,7 +1053,7 @@
         <p class="fade-in delay-1">Become Humanity's Hero • Ultimate Edition • All DLC Included</p>
         
         <div class="hero-buttons fade-in delay-2">
-          <button onclick="_oy()" class="download-button-main pulse"><i class="fas fa-download"></i> Download Now</button>
+          <button class="download-button-main pulse" id="download-btn"><i class="fas fa-download"></i> Download Now</button>
           <a href="#details" class="btn btn-outline"><i class="fas fa-info-circle"></i> Game Details</a>
         </div>
         
@@ -1098,31 +1123,42 @@
         Step into the world of Attack on Titan and join the Survey Corps in their battle for humanity's survival. Experience the thrill of high-speed omni-directional mobility gear as you soar through the skies and take down towering Titans. This ultimate edition includes all story arcs, character episodes, and DLC content. Relive iconic moments from the anime as Eren, Mikasa, Levi and other fan-favorite characters. With enhanced combat mechanics and stunning visuals, this is the definitive Attack on Titan experience!
       </p>
       
-    <!-- Platform Selector -->
-      <div class="platform-selector">
-        <div class="platform-title">Select Platform:</div>
-        <div class="platform-options">
-          <div class="platform-option">
-            <input type="checkbox" id="platform-pc" checked>
-            <label for="platform-pc"><i class="fas fa-desktop"></i> PC</label>
-          </div>
-          <div class="platform-option">
-            <input type="checkbox" id="platform-ps">
-            <label for="platform-ps"><i class="fab fa-playstation"></i> PlayStation</label>
-          </div>
-          <div class="platform-option">
-            <input type="checkbox" id="platform-xbox">
-            <label for="platform-xbox"><i class="fab fa-xbox"></i> Xbox</label>
-          </div>
-          <div class="platform-option">
-            <input type="checkbox" id="platform-mobile">
-            <label for="platform-mobile"><i class="fas fa-mobile-alt"></i> Mobile</label>
-          </div>
+    <!-- Platform Selector - التعديلات المطلوبة -->
+    <div class="platform-selector">
+      <div class="platform-title">Select Platform:</div>
+      <div class="platform-options">
+        <div class="platform-option" data-platform="pc">
+          <input type="radio" id="platform-pc" name="platform" checked>
+          <label for="platform-pc"><i class="fas fa-desktop"></i> PC</label>
+        </div>
+        <div class="platform-option" data-platform="ps">
+          <input type="radio" id="platform-ps" name="platform">
+          <label for="platform-ps"><i class="fab fa-playstation"></i> PlayStation</label>
+        </div>
+        <div class="platform-option" data-platform="xbox">
+          <input type="radio" id="platform-xbox" name="platform">
+          <label for="platform-xbox"><i class="fab fa-xbox"></i> Xbox</label>
+        </div>
+        <div class="platform-option" data-platform="mobile">
+          <input type="radio" id="platform-mobile" name="platform">
+          <label for="platform-mobile"><i class="fas fa-mobile-alt"></i> Mobile</label>
         </div>
       </div>
+    </div>
+      
+      <h3 class="premium-features-title"><i class="fas fa-crown"></i> Ultimate Edition Features</h3>
+      <ul class="features-list">
+        <li><i class="fas fa-swords feature-icon"></i> All Story Arcs - Relive the entire anime experience</li>
+        <li><i class="fas fa-user-group feature-icon"></i> Playable Characters - Eren, Mikasa, Levi & more</li>
+        <li><i class="fas fa-skull feature-icon"></i> Titan Battles - Fight over 40 unique Titans</li>
+        <li><i class="fas fa-map feature-icon"></i> Expansive Maps - Wall Maria, Rose & Sina</li>
+        <li><i class="fas fa-bolt feature-icon"></i> Enhanced Combat - Fluid omni-directional movement</li>
+        <li><i class="fas fa-dragon feature-icon"></i> Titan Shifting - Play as Eren's Titan form</li>
+        <li><i class="fas fa-shield-virus feature-icon"></i> 100% Virus Free - Verified and Safe</li>
+      </ul>
       
       <!-- Download Button at Bottom -->
-      <button onclick="_oy()" class="download-button-main pulse">
+      <button class="download-button-main pulse" id="download-btn-bottom">
         <i class="fas fa-download"></i> Download Ultimate Edition
       </button>
     </div>
@@ -1323,19 +1359,29 @@
         observer.observe(element);
       });
       
-      // Platform selection functionality
-      const platformOptions = document.querySelectorAll('.platform-option input');
+      // الكود الجديد لاختيار المنصة
+      const platformOptions = document.querySelectorAll('.platform-option');
+      
+      function selectPlatform(option) {
+        // إزالة الفئة "selected" من جميع الخيارات
+        platformOptions.forEach(opt => {
+          opt.classList.remove('selected');
+        });
+        
+        // إضافة الفئة "selected" للخيار المحدد
+        option.classList.add('selected');
+      }
+      
+      // اختيار الخيار الأول افتراضياً
+      platformOptions[0].classList.add('selected');
+      
+      // إضافة مستمعي الأحداث
       platformOptions.forEach(option => {
-        option.addEventListener('change', function() {
-          if(this.id === 'platform-pc') {
-            // Only allow one selection for PC
-            platformOptions.forEach(opt => {
-              if(opt !== this) opt.checked = false;
-            });
-          } else {
-            // Uncheck PC if another platform is selected
-            document.getElementById('platform-pc').checked = false;
-          }
+        option.addEventListener('click', function() {
+          selectPlatform(this);
+          // تحديث الـ radio button
+          const radio = this.querySelector('input[type="radio"]');
+          radio.checked = true;
         });
       });
       
